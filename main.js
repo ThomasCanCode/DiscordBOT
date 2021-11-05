@@ -21,7 +21,7 @@ client.once('ready', () => {
         
     client.on('guildMemberAdd', member => {
         postToPHP(member.user.tag);
-        console.log(' New member added! - '+member.user.tag);
+        console.log(' New member!');
     });
  
         
@@ -43,7 +43,7 @@ async function postToPHP (data) {
 
     axios.post( url, params, config )
     .then(function (response) {
-        console.log(string_data);
+        console.log(' New member added! - '+string_data);
     })
     .catch(function (error) {
         console.log(error);
