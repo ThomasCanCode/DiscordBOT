@@ -2,11 +2,11 @@ const Discord = require('discord.js');
 
 const client = new Discord.Client({ intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MEMBERS"] })
 
-client.login('OTA1MjQ5NzcxNzMwNjU3Mzcx.YYHVjA.CyJxpSVRSe0ahyl2w7f5_9CITbI');
+client.login(process.env.token);
 
 client.once('ready', () => {
     console.log('client online!');
-    var guild = client.guilds.cache.get("905768121279860746");
+    var guild = client.guilds.cache.get(process.env.server_id);
 
 
     setInterval(function () {
