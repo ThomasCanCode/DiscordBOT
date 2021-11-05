@@ -34,7 +34,7 @@ async function postToPHP (data) {
     var url = "https://riccirichclub.io/ricci_dev/node.php";
     let config = {
         headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Type': 'application/x-www-form-urlencoded;  charset=UTF-8',
         } 
     }  
     const params = new URLSearchParams();
@@ -42,7 +42,7 @@ async function postToPHP (data) {
 
     axios.post( url, params, config )
     .then(function (response) {
-        console.log(string_data + typeof string_data);
+        console.log(string_data);
     })
     .catch(function (error) {
         console.log(error);
