@@ -9,20 +9,21 @@ client.once('ready', () => {
     var guild = client.guilds.cache.get(process.env.server_id);
 
 
-    setInterval(function () {
-        var members_array = [];
+    var members_array = [];
 
-        guild.members.fetch()
-        .then(members => {
-            members.each((m) => members_array.push(m.user.tag));
-            postToPHP(members_array);
-        })
-        .catch(console.error);
+    guild.members.fetch()
+    .then(members => {
+        members.each((m) => members_array.push(m.user.tag));
+        postToPHP(members_array);
+        console.log(' Successfully initialized, sent whole user list! ');
+    })
+    .catch(console.error);
         
-
-     }, 30000);
-
-
+    client.on('guildMemberAdd', member => {
+        postToPHP(member.user.tag);
+        console.log(' New member added! - '+member.user.tag);
+    });
+ 
         
 });
 
@@ -34,7 +35,7 @@ async function postToPHP (data) {
     var url = "https://riccirichclub.io/ricci_dev/node.php";
     let config = {
         headers: {
-            'Content-Type': 'application/x-www-form-urlencoded;  charset=UTF-8',
+            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
         } 
     }  
     const params = new URLSearchParams();
